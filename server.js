@@ -30,13 +30,13 @@ app.get('/', function (req, res) {
         args: []
     };
 
-    console.log("Entro a send");
-    var pyshell = new PythonShell(__dirname + '/public/prueba.py', options);
-    // console.log("paso la creación de pyshell");
+    var pyshell = new PythonShell(__dirname + '/public/pyscript.py', options);
 
     pyshell.on('message', function (message) {
         //recibo msj enviado desd el script de python (un print por ej)
         console.log(message);
+
+        /* ACA DEBERIA IR GUARDANDO LOS MENSAJES */
     });
 
     //finalizar el flujo de entrada y finaliza el proceso
@@ -55,7 +55,7 @@ app.get('/', function (req, res) {
      pyshell.send('666');
 });
 
-app.post('/send', function (req, res) {
+app.post('/send', function (req, res) { /* VER ESTO, ¿REPUESTA A POST DEL USUARIO? */
 
    res.writeHead(200, {"Content-Type": "text/plain"});
    res.end("mando la respuesta");
